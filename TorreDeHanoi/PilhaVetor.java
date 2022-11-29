@@ -1,4 +1,4 @@
-public class PilhaVetor<T> {
+public class PilhaVetor<T> implements Cloneable {
     private int counter = 0;
     private int size;
     private T[] vet;
@@ -27,6 +27,11 @@ public class PilhaVetor<T> {
             return null;
         }
         return this.vet[this.counter - 1];
+    }
+
+    @Override
+    public PilhaVetor<T> clone() throws CloneNotSupportedException {
+        return (PilhaVetor<T>) super.clone();
     }
 
     public int size() throws Exception {

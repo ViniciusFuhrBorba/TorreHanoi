@@ -1,4 +1,4 @@
-public class PilhaEncadeada<T> {
+public class PilhaEncadeada<T> implements Cloneable {
 
     private NoLista<T> topo;
     private int tam;
@@ -31,6 +31,12 @@ public class PilhaEncadeada<T> {
     public T top() throws Exception {
         return this.topo.getInfo();
     }
+
+    @Override
+    public PilhaEncadeada<T> clone() throws CloneNotSupportedException {
+        return (PilhaEncadeada<T>) super.clone();
+    }
+
 
     public int size() throws Exception {
         if (this.isEmpty()) {
