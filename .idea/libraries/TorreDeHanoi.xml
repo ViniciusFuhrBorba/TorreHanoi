@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="TorreDeHanoi">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/TorreDeHanoi/out/artifacts/TorreDeHanoi_jar/TorreDeHanoi.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
