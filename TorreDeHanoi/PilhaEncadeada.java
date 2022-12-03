@@ -29,6 +29,9 @@ public class PilhaEncadeada<T> implements Cloneable {
     }
 
     public T top() throws Exception {
+        if (this.isEmpty()) {
+            return null;
+        }
         return this.topo.getInfo();
     }
 

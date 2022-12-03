@@ -1,19 +1,20 @@
+import java.util.Objects;
 import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) throws Exception {
 
-//        if (args.length > 1) {
-//            System.out.println("Quantidade de argumentos superior a permitida");
-//            return;
-//        }
-//        if (args.length == 0) {
-//            System.out.println("Favor inserir um argumento para começar");
-//            return;
-//        }
+        if (args.length > 1) {
+            System.out.println("Quantidade de argumentos superior a permitida");
+            return;
+        }
+        if (args.length == 0) {
+            System.out.println("Favor inserir um argumento para começar");
+            return;
+        }
 
-        String tipo = "contigua";
+        String tipo = args[0];
         boolean finalizado = false;
         boolean temErro = false;
         int movimentos = 0;
@@ -34,7 +35,7 @@ public class Main {
                     pilhaVetor1.push(i);
                 }
 
-                verificaFinal = pilhaVetor1;
+                verificaFinal = pilhaVetor1.clone();
 
                 while (!finalizado) {
                     if (temErro) {
@@ -64,7 +65,7 @@ public class Main {
                                     pino1.append(" ");
                                 }
                             }
-                        }else{
+                        } else {
                             for (int i2 = 1; i2 <= 5; i2++) {
                                 pino1.append(" ");
                             }
@@ -83,7 +84,7 @@ public class Main {
                                     pino2.append(" ");
                                 }
                             }
-                        }else{
+                        } else {
                             for (int i2 = 1; i2 <= 5; i2++) {
                                 pino2.append(" ");
                             }
@@ -102,7 +103,7 @@ public class Main {
                                     pino3.append(" ");
                                 }
                             }
-                        }else{
+                        } else {
                             for (int i2 = 1; i2 <= 5; i2++) {
                                 pino3.append(" ");
                             }
@@ -122,7 +123,7 @@ public class Main {
                         try {
                             entrada1 = input1.nextInt();
                         } catch (Exception e) {
-                            System.out.println("O caracter inserido é invalido, favor inserir um numero");
+                            System.out.println("O carácter inserido é inválido, favor inserir um carácter numérico");
                             temErro = true;
                         }
                     } else {
@@ -131,17 +132,19 @@ public class Main {
                         try {
                             entrada1 = input1.nextInt();
                         } catch (Exception e) {
-                            System.out.println("O caracter inserido e invalido, favor inserir um numero");
+                            System.out.println("O carácter inserido é inválido, favor inserir um carácter numérico");
                             temErro = true;
                         }
 
-                        System.out.println("Digite para qual pino você quer mover o disco:");
-                        Scanner input2 = new Scanner(System.in);
-                        try {
-                            entrada2 = input2.nextInt();
-                        } catch (Exception e) {
-                            System.out.println("O caracter inserido e invalido, favor inserir um numero");
-                            temErro = true;
+                        if (!temErro) {
+                            System.out.println("Digite para qual pino você quer mover o disco:");
+                            Scanner input2 = new Scanner(System.in);
+                            try {
+                                entrada2 = input2.nextInt();
+                            } catch (Exception e) {
+                                System.out.println("O carácter inserido é inválido, favor inserir um carácter númerico");
+                                temErro = true;
+                            }
                         }
                     }
 
@@ -175,19 +178,20 @@ public class Main {
                     if (!temErro) {
                         if (entrada1 != -1 && entrada2 != -1) {
                             if (entrada1 < 1 || entrada1 > 3) {
-                                System.out.println("O pino de onde o disco sera removido não existe. Favor selecionar um pino entre 1 e 3");
+                                System.out.println("O pino de onde o disco será removido não existe. Favor selecionar um pino entre 1 e 3");
                                 temErro = true;
                             }
-                            if (entrada2 < 1 || entrada2 > 3) {
-                                System.out.println("O pino onde o disco sera inserido não existe. Favor selecionar um pino entre 1 e 3");
-                                temErro = true;
+                            if (!temErro) {
+                                if (entrada2 < 1 || entrada2 > 3) {
+                                    System.out.println("O pino onde o disco será inserido não existe. Favor selecionar um pino entre 1 e 3");
+                                    temErro = true;
+                                }
                             }
-
                             if (!temErro) {
                                 switch (entrada1) {
                                     case 1: {
                                         if (pilhaVetor1.isEmpty()) {
-                                            System.out.println("O pino de onde sera removido o disco se encontra vazio.");
+                                            System.out.println("O pino de onde será removido o disco se encontra vazio.");
                                             temErro = true;
                                         } else {
                                             switch (entrada2) {
@@ -203,7 +207,7 @@ public class Main {
                                                             pilhaVetor2.push(pilhaVetor1.pop());
                                                             movimentos++;
                                                         } else {
-                                                            System.out.println("O primeiro disco do pino 2 e menor que o disco do pino 1.");
+                                                            System.out.println("O primeiro disco do pino 2 é menor que o disco do pino 1.");
                                                             temErro = true;
                                                         }
                                                     }
@@ -221,14 +225,14 @@ public class Main {
                                                             pilhaVetor3.push(pilhaVetor1.pop());
                                                             movimentos++;
                                                         } else {
-                                                            System.out.println("O primeiro disco do pino 3 e menor que o disco do pino 1.");
+                                                            System.out.println("O primeiro disco do pino 3 é menor que o disco do pino 1.");
                                                             temErro = true;
                                                         }
                                                     }
                                                     break;
                                                 }
                                                 default: {
-                                                    System.out.println("Nao e possivel remover um disco e adicionalo no mesmo disco");
+                                                    System.out.println("Não é possível remover um disco e adicioná-lo no mesmo pino de origem");
                                                     temErro = true;
                                                     break;
                                                 }
@@ -238,13 +242,13 @@ public class Main {
                                     }
                                     case 2: {
                                         if (pilhaVetor2.isEmpty()) {
-                                            System.out.println("O pino de onde sera removido o disco se encontra vazio.");
+                                            System.out.println("O pino de onde será removido o disco se encontra vazio.");
                                             temErro = true;
                                         } else {
                                             switch (entrada2) {
                                                 case 1: {
                                                     if (pilhaVetor1.isFull()) {
-                                                        System.out.println("O pino onde o disco sera colocado se encontra cheio.");
+                                                        System.out.println("O pino onde o disco será colocado se encontra cheio.");
                                                         temErro = true;
                                                     } else {
                                                         if (pilhaVetor1.isEmpty()) {
@@ -254,7 +258,7 @@ public class Main {
                                                             pilhaVetor1.push(pilhaVetor2.pop());
                                                             movimentos++;
                                                         } else {
-                                                            System.out.println("O primeiro disco do pino 1 e menor que o disco do pino 2.");
+                                                            System.out.println("O primeiro disco do pino 1 é menor que o disco do pino 2.");
                                                             temErro = true;
                                                         }
                                                     }
@@ -262,7 +266,7 @@ public class Main {
                                                 }
                                                 case 3: {
                                                     if (pilhaVetor3.isFull()) {
-                                                        System.out.println("O pino onde o disco sera colocado se encontra cheio.");
+                                                        System.out.println("O pino onde o disco será colocado se encontra cheio.");
                                                         temErro = true;
                                                     } else {
                                                         if (pilhaVetor3.isEmpty()) {
@@ -272,14 +276,14 @@ public class Main {
                                                             pilhaVetor3.push(pilhaVetor2.pop());
                                                             movimentos++;
                                                         } else {
-                                                            System.out.println("O primeiro disco do pino 3 e menor que o disco do pino 2.");
+                                                            System.out.println("O primeiro disco do pino 3 é menor que o disco do pino 2.");
                                                             temErro = true;
                                                         }
                                                     }
                                                     break;
                                                 }
                                                 default: {
-                                                    System.out.println("Nao e possivel remover um disco e adicionalo no mesmo disco");
+                                                    System.out.println("Não é possível remover um disco e adicioná-lo no mesmo pino de origem");
                                                     temErro = true;
                                                     break;
                                                 }
@@ -289,13 +293,13 @@ public class Main {
                                     }
                                     case 3: {
                                         if (pilhaVetor3.isEmpty()) {
-                                            System.out.println("O pino de onde sera removido o disco se encontra vazio.");
+                                            System.out.println("O pino de onde será removido o disco se encontra vazio.");
                                             temErro = true;
                                         } else {
                                             switch (entrada2) {
                                                 case 1: {
                                                     if (pilhaVetor1.isFull()) {
-                                                        System.out.println("O pino onde o disco sera colocado se encontra cheio.");
+                                                        System.out.println("O pino onde o disco será colocado se encontra cheio.");
                                                         temErro = true;
                                                     } else {
                                                         if (pilhaVetor1.isEmpty()) {
@@ -305,7 +309,7 @@ public class Main {
                                                             pilhaVetor1.push(pilhaVetor3.pop());
                                                             movimentos++;
                                                         } else {
-                                                            System.out.println("O primeiro disco do pino 1 e menor que o disco do pino 3.");
+                                                            System.out.println("O primeiro disco do pino 1 é menor que o disco do pino 3.");
                                                             temErro = true;
                                                         }
                                                     }
@@ -313,7 +317,7 @@ public class Main {
                                                 }
                                                 case 2: {
                                                     if (pilhaVetor3.isFull()) {
-                                                        System.out.println("O pino onde o disco sera colocado se encontra cheio.");
+                                                        System.out.println("O pino onde o disco será colocado se encontra cheio.");
                                                         temErro = true;
                                                     } else {
                                                         if (pilhaVetor2.isEmpty()) {
@@ -323,14 +327,14 @@ public class Main {
                                                             pilhaVetor2.push(pilhaVetor3.pop());
                                                             movimentos++;
                                                         } else {
-                                                            System.out.println("O primeiro disco do pino 2 e menor que o disco do pino 3.");
+                                                            System.out.println("O primeiro disco do pino 2 é menor que o disco do pino 3.");
                                                             temErro = true;
                                                         }
                                                     }
                                                     break;
                                                 }
                                                 default: {
-                                                    System.out.println("Nao e possivel remover um disco e adicionalo no mesmo disco");
+                                                    System.out.println("Não é possível remover um disco e adicioná-lo no mesmo pino de origem");
                                                     temErro = true;
                                                     break;
                                                 }
@@ -342,10 +346,13 @@ public class Main {
                             }
                         }
                     }
-                    if (pilhaVetor3.equals(verificaFinal) && !temErro) {
-                        finalizado = true;
-                        System.out.println("Parabens voce chegou ai final do jogo!");
-                        System.out.println("Foram realizados ao todos " + movimentos + " movimentos");
+                    if (pilhaVetor3.size() > 0) {
+                        if (Objects.equals(verificaFinal.top(), pilhaVetor3.top()) && verificaFinal.size() == pilhaVetor3.size() && !temErro) {
+                            finalizado = true;
+                            System.out.println("Parabéns! Você chegou ao final do jogo!");
+                            System.out.println("Foram realizados ao todo " + movimentos + " movimentos");
+                            System.out.println("Jogo encerrado!");
+                        }
                     }
                 }
                 break;
@@ -365,7 +372,7 @@ public class Main {
                     pilhaEncadeada1.push(i);
                 }
 
-                verificaFinal = pilhaEncadeada1;
+                verificaFinal = pilhaEncadeada1.clone();
 
                 while (!finalizado) {
                     if (temErro) {
@@ -395,7 +402,7 @@ public class Main {
                                     pino1.append(" ");
                                 }
                             }
-                        }else{
+                        } else {
                             for (int i2 = 1; i2 <= 5; i2++) {
                                 pino1.append(" ");
                             }
@@ -414,7 +421,7 @@ public class Main {
                                     pino2.append(" ");
                                 }
                             }
-                        }else{
+                        } else {
                             for (int i2 = 1; i2 <= 5; i2++) {
                                 pino2.append(" ");
                             }
@@ -433,7 +440,7 @@ public class Main {
                                     pino3.append(" ");
                                 }
                             }
-                        }else{
+                        } else {
                             for (int i2 = 1; i2 <= 5; i2++) {
                                 pino3.append(" ");
                             }
@@ -453,7 +460,7 @@ public class Main {
                         try {
                             entrada1 = input1.nextInt();
                         } catch (Exception e) {
-                            System.out.println("O caracter inserido é invalido, favor inserir um numero");
+                            System.out.println("O carácter inserido é inválido, favor inserir um carácter numérico");
                             temErro = true;
                         }
                     } else {
@@ -462,17 +469,19 @@ public class Main {
                         try {
                             entrada1 = input1.nextInt();
                         } catch (Exception e) {
-                            System.out.println("O caracter inserido e invalido, favor inserir um numero");
+                            System.out.println("O carácter inserido e inválido, favor inserir um carácter numérico");
                             temErro = true;
                         }
 
-                        System.out.println("Digite para qual pino você quer mover o disco:");
-                        Scanner input2 = new Scanner(System.in);
-                        try {
-                            entrada2 = input2.nextInt();
-                        } catch (Exception e) {
-                            System.out.println("O caracter inserido e invalido, favor inserir um numero");
-                            temErro = true;
+                        if (!temErro) {
+                            System.out.println("Digite para qual pino você quer mover o disco:");
+                            Scanner input2 = new Scanner(System.in);
+                            try {
+                                entrada2 = input2.nextInt();
+                            } catch (Exception e) {
+                                System.out.println("O carácter inserido é inválido, favor inserir um carácter numérico");
+                                temErro = true;
+                            }
                         }
                     }
 
@@ -506,11 +515,11 @@ public class Main {
                     if (!temErro) {
                         if (entrada1 != -1 && entrada2 != -1) {
                             if (entrada1 < 1 || entrada1 > 3) {
-                                System.out.println("O pino de onde o disco sera removido não existe. Favor selecionar um pino entre 1 e 3");
+                                System.out.println("O pino de onde o disco será removido não existe. Favor selecionar um pino entre 1 e 3");
                                 temErro = true;
                             }
                             if (entrada2 < 1 || entrada2 > 3) {
-                                System.out.println("O pino onde o disco sera inserido não existe. Favor selecionar um pino entre 1 e 3");
+                                System.out.println("O pino onde o disco será inserido não existe. Favor selecionar um pino entre 1 e 3");
                                 temErro = true;
                             }
 
@@ -518,7 +527,7 @@ public class Main {
                                 switch (entrada1) {
                                     case 1: {
                                         if (pilhaEncadeada1.isEmpty()) {
-                                            System.out.println("O pino de onde sera removido o disco se encontra vazio.");
+                                            System.out.println("O pino de onde será removido o disco se encontra vazio.");
                                             temErro = true;
                                         } else {
                                             switch (entrada2) {
@@ -534,7 +543,7 @@ public class Main {
                                                             pilhaEncadeada2.push(pilhaEncadeada1.pop());
                                                             movimentos++;
                                                         } else {
-                                                            System.out.println("O primeiro disco do pino 2 e menor que o disco do pino 1.");
+                                                            System.out.println("O primeiro disco do pino 2 é menor que o disco do pino 1.");
                                                             temErro = true;
                                                         }
                                                     }
@@ -552,14 +561,14 @@ public class Main {
                                                             pilhaEncadeada3.push(pilhaEncadeada1.pop());
                                                             movimentos++;
                                                         } else {
-                                                            System.out.println("O primeiro disco do pino 3 e menor que o disco do pino 1.");
+                                                            System.out.println("O primeiro disco do pino 3 é menor que o disco do pino 1.");
                                                             temErro = true;
                                                         }
                                                     }
                                                     break;
                                                 }
                                                 default: {
-                                                    System.out.println("Nao e possivel remover um disco e adicionalo no mesmo disco");
+                                                    System.out.println("Não é possível remover um disco e adicioná-lo no mesmo pino de onde ele foi removido");
                                                     temErro = true;
                                                     break;
                                                 }
@@ -569,13 +578,13 @@ public class Main {
                                     }
                                     case 2: {
                                         if (pilhaEncadeada2.isEmpty()) {
-                                            System.out.println("O pino de onde sera removido o disco se encontra vazio.");
+                                            System.out.println("O pino de onde será removido o disco se encontra vazio.");
                                             temErro = true;
                                         } else {
                                             switch (entrada2) {
                                                 case 1: {
                                                     if (pilhaEncadeada1.size() == 5) {
-                                                        System.out.println("O pino onde o disco sera colocado se encontra cheio.");
+                                                        System.out.println("O pino onde o disco será colocado se encontra cheio.");
                                                         temErro = true;
                                                     } else {
                                                         if (pilhaEncadeada1.isEmpty()) {
@@ -585,7 +594,7 @@ public class Main {
                                                             pilhaEncadeada1.push(pilhaEncadeada2.pop());
                                                             movimentos++;
                                                         } else {
-                                                            System.out.println("O primeiro disco do pino 1 e menor que o disco do pino 2.");
+                                                            System.out.println("O primeiro disco do pino 1 é menor que o disco do pino 2.");
                                                             temErro = true;
                                                         }
                                                     }
@@ -593,7 +602,7 @@ public class Main {
                                                 }
                                                 case 3: {
                                                     if (pilhaEncadeada3.size() == 5) {
-                                                        System.out.println("O pino onde o disco sera colocado se encontra cheio.");
+                                                        System.out.println("O pino onde o disco será colocado se encontra cheio.");
                                                         temErro = true;
                                                     } else {
                                                         if (pilhaEncadeada3.isEmpty()) {
@@ -603,14 +612,14 @@ public class Main {
                                                             pilhaEncadeada3.push(pilhaEncadeada2.pop());
                                                             movimentos++;
                                                         } else {
-                                                            System.out.println("O primeiro disco do pino 3 e menor que o disco do pino 2.");
+                                                            System.out.println("O primeiro disco do pino 3 é menor que o disco do pino 2.");
                                                             temErro = true;
                                                         }
                                                     }
                                                     break;
                                                 }
                                                 default: {
-                                                    System.out.println("Nao e possivel remover um disco e adicionalo no mesmo disco");
+                                                    System.out.println("Não é possível remover um disco e adicioná-lo no mesmo disco");
                                                     temErro = true;
                                                     break;
                                                 }
@@ -620,13 +629,13 @@ public class Main {
                                     }
                                     case 3: {
                                         if (pilhaEncadeada3.isEmpty()) {
-                                            System.out.println("O pino de onde sera removido o disco se encontra vazio.");
+                                            System.out.println("O pino de onde será removido o disco se encontra vazio.");
                                             temErro = true;
                                         } else {
                                             switch (entrada2) {
                                                 case 1: {
                                                     if (pilhaEncadeada1.size() == 5) {
-                                                        System.out.println("O pino onde o disco sera colocado se encontra cheio.");
+                                                        System.out.println("O pino onde o disco será colocado se encontra cheio.");
                                                         temErro = true;
                                                     } else {
                                                         if (pilhaEncadeada1.isEmpty()) {
@@ -654,14 +663,14 @@ public class Main {
                                                             pilhaEncadeada2.push(pilhaEncadeada3.pop());
                                                             movimentos++;
                                                         } else {
-                                                            System.out.println("O primeiro disco do pino 2 e menor que o disco do pino 3.");
+                                                            System.out.println("O primeiro disco do pino 2 é menor que o disco do pino 3.");
                                                             temErro = true;
                                                         }
                                                     }
                                                     break;
                                                 }
                                                 default: {
-                                                    System.out.println("Nao e possivel remover um disco e adicionalo no mesmo disco");
+                                                    System.out.println("Não é possivel remover um disco e adicioná-lo no mesmo pino de onde está sendo removido");
                                                     temErro = true;
                                                     break;
                                                 }
@@ -673,10 +682,13 @@ public class Main {
                             }
                         }
                     }
-                    if (pilhaEncadeada3.equals(verificaFinal) && !temErro) {
-                        finalizado = true;
-                        System.out.println("Parabens voce chegou ai final do jogo!");
-                        System.out.println("Foram realizados ao todos " + movimentos + " movimentos");
+                    if (pilhaEncadeada3.size() > 0) {
+                        if (Objects.equals(verificaFinal.top(), pilhaEncadeada3.top()) && verificaFinal.size() == pilhaEncadeada3.size() && !temErro) {
+                            finalizado = true;
+                            System.out.println("Parabéns! Você chegou ao final do jogo!");
+                            System.out.println("Foram realizados ao todo " + movimentos + " movimentos");
+                            System.out.println("Jogo encerrado!");
+                        }
                     }
                 }
                 break;
@@ -692,6 +704,5 @@ public class Main {
                 break;
             }
         }
-        System.out.println("Jogo encerrado!");
     }
 }
