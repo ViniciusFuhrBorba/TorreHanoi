@@ -45,8 +45,72 @@ public class Main {
                     pilhaVetor2Aux = pilhaVetor2.clone();
                     pilhaVetor3Aux = pilhaVetor3.clone();
 
-                    for (int i = 1; i <= 5; i++) {
-                        System.out.println(pilhaVetor1Aux.pop() + "\t" + pilhaVetor2Aux.pop() + "\t" + pilhaVetor3Aux.pop());
+                    StringBuilder pino1 = new StringBuilder();
+                    StringBuilder pino2 = new StringBuilder();
+                    StringBuilder pino3 = new StringBuilder();
+
+                    for (int i = 5; i >= 1; i--) {
+                        if (!pilhaVetor1Aux.isEmpty()) {
+                            if (pilhaVetor1Aux.size() == i) {
+                                int val = pilhaVetor1Aux.pop();
+                                for (int i2 = 0; i2 < val; i2++) {
+                                    pino1.append("_");
+                                }
+                                for (int i2 = val; i2 < 5; i2++) {
+                                    pino1.append(" ");
+                                }
+                            } else {
+                                for (int i2 = 1; i2 <= 5; i2++) {
+                                    pino1.append(" ");
+                                }
+                            }
+                        }else{
+                            for (int i2 = 1; i2 <= 5; i2++) {
+                                pino1.append(" ");
+                            }
+                        }
+                        if (!pilhaVetor2Aux.isEmpty()) {
+                            if (pilhaVetor2Aux.size() == i) {
+                                int val = pilhaVetor2Aux.pop();
+                                for (int i2 = 0; i2 < val; i2++) {
+                                    pino2.append("_");
+                                }
+                                for (int i2 = val; i2 < 5; i2++) {
+                                    pino2.append(" ");
+                                }
+                            } else {
+                                for (int i2 = 1; i2 <= 5; i2++) {
+                                    pino2.append(" ");
+                                }
+                            }
+                        }else{
+                            for (int i2 = 1; i2 <= 5; i2++) {
+                                pino2.append(" ");
+                            }
+                        }
+                        if (!pilhaVetor3Aux.isEmpty()) {
+                            if (pilhaVetor3Aux.size() == i) {
+                                int val = pilhaVetor3Aux.pop();
+                                for (int i2 = 0; i2 < val; i2++) {
+                                    pino3.append("_");
+                                }
+                                for (int i2 = val; i2 < 5; i2++) {
+                                    pino3.append(" ");
+                                }
+                            } else {
+                                for (int i2 = 1; i2 <= 5; i2++) {
+                                    pino3.append(" ");
+                                }
+                            }
+                        }else{
+                            for (int i2 = 1; i2 <= 5; i2++) {
+                                pino3.append(" ");
+                            }
+                        }
+                        System.out.println(pino1 + "\t" + pino2 + "\t" + pino3);
+                        pino1 = new StringBuilder("");
+                        pino2 = new StringBuilder("");
+                        pino3 = new StringBuilder("");
                     }
 
                     int entrada1 = -1;
@@ -312,8 +376,72 @@ public class Main {
                     pilhaEncadeada2Aux = pilhaEncadeada2.clone();
                     pilhaEncadeada3Aux = pilhaEncadeada3.clone();
 
-                    for (int i = 1; i <= 5; i++) {
-                        System.out.println(pilhaEncadeada1Aux.pop() + "\t" + pilhaEncadeada2Aux.pop() + "\t" + pilhaEncadeada3Aux.pop());
+                    StringBuilder pino1 = new StringBuilder();
+                    StringBuilder pino2 = new StringBuilder();
+                    StringBuilder pino3 = new StringBuilder();
+
+                    for (int i = 5; i >= 1; i--) {
+                        if (!pilhaEncadeada1Aux.isEmpty()) {
+                            if (pilhaEncadeada1Aux.size() == i) {
+                                int val = pilhaEncadeada1Aux.pop();
+                                for (int i2 = 0; i2 < val; i2++) {
+                                    pino1.append("_");
+                                }
+                                for (int i2 = val; i2 < 5; i2++) {
+                                    pino1.append(" ");
+                                }
+                            } else {
+                                for (int i2 = 1; i2 <= 5; i2++) {
+                                    pino1.append(" ");
+                                }
+                            }
+                        }else{
+                            for (int i2 = 1; i2 <= 5; i2++) {
+                                pino1.append(" ");
+                            }
+                        }
+                        if (!pilhaEncadeada2Aux.isEmpty()) {
+                            if (pilhaEncadeada2Aux.size() == i) {
+                                int val = pilhaEncadeada2Aux.pop();
+                                for (int i2 = 0; i2 < val; i2++) {
+                                    pino2.append("_");
+                                }
+                                for (int i2 = val; i2 < 5; i2++) {
+                                    pino2.append(" ");
+                                }
+                            } else {
+                                for (int i2 = 1; i2 <= 5; i2++) {
+                                    pino2.append(" ");
+                                }
+                            }
+                        }else{
+                            for (int i2 = 1; i2 <= 5; i2++) {
+                                pino2.append(" ");
+                            }
+                        }
+                        if (!pilhaEncadeada3Aux.isEmpty()) {
+                            if (pilhaEncadeada3Aux.size() == i) {
+                                int val = pilhaEncadeada3Aux.pop();
+                                for (int i2 = 0; i2 < val; i2++) {
+                                    pino3.append("_");
+                                }
+                                for (int i2 = val; i2 < 5; i2++) {
+                                    pino3.append(" ");
+                                }
+                            } else {
+                                for (int i2 = 1; i2 <= 5; i2++) {
+                                    pino3.append(" ");
+                                }
+                            }
+                        }else{
+                            for (int i2 = 1; i2 <= 5; i2++) {
+                                pino3.append(" ");
+                            }
+                        }
+                        System.out.println(pino1 + "\t" + pino2 + "\t" + pino3);
+                        pino1 = new StringBuilder("");
+                        pino2 = new StringBuilder("");
+                        pino3 = new StringBuilder("");
                     }
 
                     int entrada1 = -1;
